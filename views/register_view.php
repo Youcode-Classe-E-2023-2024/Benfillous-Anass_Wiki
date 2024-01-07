@@ -1,11 +1,11 @@
-<div class="h-screen">
+<main class="h-[900px] my-20">
 
     <div class="background">
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
     <form method="post" action="index.php?page=register" class="form register-form" enctype="multipart/form-data">
-        <h3 class="text-white">Sign Up Here</h3>
+        <h3 class="text-black">Sign Up Here</h3>
 
         <label>User Picture</label>
         <!-- Input for uploading/selecting an image -->
@@ -38,7 +38,7 @@
             </a>
         </div>
     </form>
-</div>
+</main>
 <script>
     // JavaScript to handle image preview
     const imageInput = document.getElementById('imageInput');
