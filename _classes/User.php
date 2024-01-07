@@ -1,9 +1,9 @@
 <?php
-
 class User
 {
     public $id;
     public $email;
+    public $picture;
     public $username;
     private $password;
 
@@ -11,20 +11,47 @@ class User
     {
         global $db;
 
-        $result = $db->query("SELECT * FROM users WHERE users_id = '$id'");
+        $result = $db->query("SELECT * FROM users WHERE user_id = '$id'");
+
         $user = $result->fetch_assoc();
 
-        $this->id = $user['users_id'];
-        $this->email = $user['users_email'];
-        $this->username = $user['users_username'];
-        $this->password = $user['users_password'];
+        $this->id = $user['user_id'];
+        $this->picture = $user['picture'];
+        $this->email = $user['email'];
+        $this->username = $user['username'];
+        $this->password = $user['password'];
     }
 
     static function getAll()
     {
         global $db;
         $result = $db->query("SELECT * FROM users");
-        return $result->fetch_all(MYSQLI_ASSOC);
+        if ($result)
+            return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    static function user_checker($email, $db)
+    {
+        $sql = "SELECT * FROM users WHERE email = '$email'";
+        $stmt = mysqli_stmt_init($db);
+        mysqli_stmt_prepare($stmt, $sql);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        if ($result)
+            return $result->fetch_assoc();
+        return false;
+    }
+
+    static function insertUser($username, $email, $password, $picture, $db)
+    {
+        $sql = "INSERT INTO users (username, email, password, picture) VALUES (?, ?, ?, ?)";
+        $stmt = mysqli_stmt_init($db);
+        mysqli_stmt_prepare($stmt, $sql);
+        mysqli_stmt_bind_param($stmt, "ssss", $username, $email, $password, $picture);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+        mysqli_close($db);
     }
 
     function edit()
