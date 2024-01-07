@@ -1,4 +1,5 @@
 <?php
+
 class User
 {
     public $id;
@@ -11,9 +12,11 @@ class User
     {
         global $db;
 
-        $result = $db->query("SELECT * FROM users WHERE user_id = '$id'");
+        $stmt = $db->prepare("SELECT * FROM users WHERE user_id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
 
-        $user = $result->fetch_assoc();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         $this->id = $user['user_id'];
         $this->picture = $user['picture'];
@@ -25,33 +28,34 @@ class User
     static function getAll()
     {
         global $db;
-        $result = $db->query("SELECT * FROM users");
-        if ($result)
-            return $result->fetch_all(MYSQLI_ASSOC);
+        $stmt = $db->query("SELECT * FROM users");
+        if ($stmt)
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     static function user_checker($email, $db)
     {
-        $sql = "SELECT * FROM users WHERE email = '$email'";
-        $stmt = mysqli_stmt_init($db);
-        mysqli_stmt_prepare($stmt, $sql);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
+        $sql = "SELECT * FROM users WHERE email = :email";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($result)
-            return $result->fetch_assoc();
+            return $result;
         return false;
     }
 
     static function insertUser($username, $email, $password, $picture, $db)
     {
-        $sql = "INSERT INTO users (username, email, password, picture) VALUES (?, ?, ?, ?)";
-        $stmt = mysqli_stmt_init($db);
-        mysqli_stmt_prepare($stmt, $sql);
-        mysqli_stmt_bind_param($stmt, "ssss", $username, $email, $password, $picture);
-        mysqli_stmt_execute($stmt);
-        mysqli_stmt_close($stmt);
-        mysqli_close($db);
+        $sql = "INSERT INTO users (username, email, password, picture) VALUES (:username, :email, :password, :picture)";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':picture', $picture);
+        $stmt->execute();
     }
 
     function edit()
@@ -59,6 +63,7 @@ class User
         global $db;
         return $db->query("UPDATE users SET users_email = '$this->email', users_username = '$this->username' WHERE users_id = '$this->id'");
     }
+
 
     public function setPassword($pwd)
     {
