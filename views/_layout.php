@@ -20,15 +20,15 @@
 
 <!-- header -->
 <header class="flex items-center justify-between py-2">
-    <a href="#" class="px-2 lg:px-0 font-bold capitalize">
-        Tech Blog
+    <a href="index.php" class="px-2 lg:px-0 font-bold capitalize">
+        WIKI
     </a>
     <button class="block md:hidden px-2 text-3xl">
         <i class='bx bx-menu'></i>
     </button>
     <ul class="hidden md:inline-flex items-center">
         <li class="px-2 md:px-4">
-            <a href="#" class="text-green-800 font-semibold hover:text-green-600"> Home </a>
+            <a href="index.php" class="text-green-800 font-semibold hover:text-green-600"> Home </a>
         </li>
         <li class="px-2 md:px-4">
             <a href="#" class="text-gray-500 font-semibold hover:text-green-600"> About </a>
