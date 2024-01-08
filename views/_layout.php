@@ -46,6 +46,7 @@
                     <button name="logout" class="text-gray-500 font-semibold hover:text-green-600"> Logout </button>
                 </form>
             </li>
+            <li>manage wiki</li>
         <?php } else { ?>
             <li class="px-2 md:px-4 hidden md:block">
                 <a href="index.php?page=login" class="text-gray-500 font-semibold hover:text-green-600"> Login </a>
