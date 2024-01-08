@@ -21,7 +21,8 @@ $all_pages = scandir('controllers');
 if (in_array($page . '_controller.php', $all_pages)) {
     include_once 'models/' . $page . '_model.php';
     include_once 'controllers/' . $page . '_controller.php';
-    include_once 'views/_layout.php';
+    /*include_once 'views/_layout.php';*/
+    include_once 'views/dashboard_layout.php';
 } else {
     header('Location: 404.html');
 }
