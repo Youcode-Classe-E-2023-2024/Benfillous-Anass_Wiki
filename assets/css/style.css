@@ -112,7 +112,7 @@ label {
 button {
     margin-top: 50px;
     width: 100%;
-    background-color: #ffffff;
+    background-color: #515151;
     color: #080710;
     padding: 15px 0;
     font-size: 18px;
@@ -126,7 +126,7 @@ button {
     display: flex;
 }
 
-.social div {
+.social button {
     background: red;
     width: 150px;
     border-radius: 3px;

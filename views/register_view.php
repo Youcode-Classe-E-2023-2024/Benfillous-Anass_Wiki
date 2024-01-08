@@ -9,7 +9,7 @@
 
         <label>User Picture</label>
         <!-- Input for uploading/selecting an image -->
-        <input class="login-input" name="picture" type="file" accept="image" id="imageInput" style="display: none">
+        <input class="login-input" name="picture" type="file" accept="image" id="imageInput" style="display: none" required>
 
         <!-- Circular image container -->
         <label for="imageInput" class="cursor-pointer flex justify-center">
@@ -20,22 +20,24 @@
         </label>
 
         <label for="username">Username</label>
-        <input class="login-input" name="username" type="text" placeholder="Username" id="username">
+        <input class="login-input" name="username" type="text" placeholder="Username" id="username" required>
 
         <label for="email">Email</label>
-        <input class="login-input" name="email" type="text" placeholder="Email" id="email">
+        <input class="login-input" name="email" type="text" placeholder="Email" id="email" required>
 
         <label for="password">Password</label>
-        <input class="login-input" name="password" type="password" placeholder="Password" id="password">
+        <input class="login-input" name="password" type="password" placeholder="Password" id="password" required>
 
-        <div class="social flex justify-center">
+        <div class="social flex justify-center bg-gray-200 hover:bg-gray-300">
             <button name="signup" id="btn">Sign Up</button>
         </div>
         <div class="social items-center flex-col">
             <p class="text-sm mb-4">Or</p>
-            <a href="index.php?page=login">
-                <div class="cursor-pointer">Login</div>
-            </a>
+            <div class="w-full flex justify-center bg-gray-200 hover:bg-gray-300">
+                <a href="index.php?page=login">
+                    <div class="cursor-pointer">Sign In</div>
+                </a>
+            </div>
         </div>
     </form>
 </main>
