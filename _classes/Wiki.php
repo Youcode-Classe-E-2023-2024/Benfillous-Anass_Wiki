@@ -33,4 +33,11 @@ class Wiki {
             Tag::update_wiki_tag($tag);
         }
     }
+
+    function deleteWiki($wiki_id) {
+        global $db;
+        $sql = "DELETE FROM wiki WHERE wiki_id = :wiki_id";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':wiki_id', $wiki_id);
+        $stmt->execute();
 }
