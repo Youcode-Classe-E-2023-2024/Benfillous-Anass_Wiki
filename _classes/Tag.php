@@ -41,4 +41,12 @@ class Tag {
         $stmt->bindParam(':wiki_id', $wikiId);
         $stmt->execute();
     }
+
+    static function update_wiki_tag ($tag) {
+        global $db;
+        $sql = "UPDATE wiki_tag  SET tag_id = :tag_id";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':tag_id', $tag);
+        $stmt->execute();
+    }
 }
