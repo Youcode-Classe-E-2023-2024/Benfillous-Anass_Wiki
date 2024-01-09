@@ -11,7 +11,34 @@ manageWikisBtn.addEventListener("click", () => {
 
 
 $(addWikiBtn).click(()=> {
+$(addWikiBtn).click(() => {
     $("#wikis-container").hide();
     $("#form-section").show();
 
 })
+$(wikiSubmitBtn).click(() => {
+    createWiki();
+    titleInput.value = "";
+    contentInput.value = "";
+    $(tagInput).val("");
+    categoryInput.value = "";
+    $("#wikis-container").show();
+    $("#form-section").hide();
+    scrollToTop();
+})
+
+    $.post(
+        "index.php?page=home",
+        {
+            title: titleInput.value,
+            content: contentInput.value,
+            tag: $(tagInput).val(),
+            category: categoryInput.value,
+            create_wiki: true
+        },
+        (data) => {
+            console.log(data);
+        }
+    )
+}
+
