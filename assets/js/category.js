@@ -105,3 +105,8 @@ function deleteCategory(categoryId) {
 
 getCategories();
 
+function showForm() {
+    document.querySelector("#edit-category-form").classList.add("hidden");
+    document.querySelector("#category-form").classList.remove("hidden");
+}
+
