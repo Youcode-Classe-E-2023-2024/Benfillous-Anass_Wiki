@@ -42,11 +42,13 @@
 
         <?php if (isset($_SESSION["login"])) { ?>
             <li class="px-2 md:px-4 hidden md:block">
+                <a href="#" class="text-gray-500 font-semibold hover:text-green-600"> Manage My Wikis </a>
+            </li>
+            <li class="px-2 md:px-4 hidden md:block">
                 <form action="index.php?page=home" method="post">
                     <button name="logout" class="text-gray-500 font-semibold hover:text-green-600"> Logout </button>
                 </form>
             </li>
-            <li>manage wiki</li>
         <?php } else { ?>
             <li class="px-2 md:px-4 hidden md:block">
                 <a href="index.php?page=login" class="text-gray-500 font-semibold hover:text-green-600"> Login </a>
