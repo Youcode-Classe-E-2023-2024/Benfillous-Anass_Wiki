@@ -40,4 +40,14 @@ class Wiki {
         $stmt = $db->prepare($sql);
         $stmt->bindParam(':wiki_id', $wiki_id);
         $stmt->execute();
+    }
+
+    function getWikis() {
+        global $db;
+        $sql = "SELECT * FROM wiki WHERE archived = 0";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
 }
