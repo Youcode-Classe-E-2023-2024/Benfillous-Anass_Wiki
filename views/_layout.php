@@ -45,11 +45,11 @@
             if (empty($_SESSION["admin"])) {
                 ?>
                 <li class="px-2 md:px-4 hidden md:block">
-                    <a href="#" class="text-gray-500 font-semibold hover:text-green-600"> Manage My Wikis </a>
+                    <a id="manage-wikis-btn" class="cursor-pointer text-gray-500 font-semibold hover:text-green-600"> Manage My Wikis </a>
                 </li>
             <?php } else { ?>
                 <li class="px-2 md:px-4 hidden md:block">
-                    <a href="#" class="text-gray-500 font-semibold hover:text-green-600"> Manage Wikis </a>
+                    <a id="manage-wikis-btn" class="cursor-pointer text-gray-500 font-semibold hover:text-green-600"> Manage Wikis </a>
                 </li>
             <?php } ?>
             <li class="px-2 md:px-4 hidden md:block">
@@ -117,5 +117,6 @@
     </div>
 </footer>
 <script src="<?= PATH ?>assets/js/main.js"></script>
+<script src="<?= PATH ?>assets/js/wikis.js"></script>
 </body>
 </html>
