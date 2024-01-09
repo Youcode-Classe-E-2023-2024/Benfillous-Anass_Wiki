@@ -8,7 +8,11 @@ if (isset($_POST['login'])) {
         if ($userChecker) {
             if (password_verify(trim($password), $userChecker["password"])) {
                 $authentication = new Authentication();
-                $authentication->login($userChecker["user_id"]);
+                if ($userChecker["role"] == "admin")
+                    $authentication->login($userChecker["user_id"], "dashboard");
+                else
+                    $authentication->login($userChecker["user_id"], "home");
+
             } else {
                 throw new Exception("password_incorrect");
             }
