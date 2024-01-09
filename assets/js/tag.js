@@ -87,3 +87,18 @@ function updateTag(tagId) {
     } else
         editTagInput.style.border = "1px solid red";
 }
+
+function deleteTag(tagId) {
+    $.post(
+        "index.php?page=dashboard",
+        {
+            tag_id: tagId,
+            delete_tag: true
+        },
+        (data) => {
+            console.log(data);
+            getTags();
+        }
+    )
+}
+
