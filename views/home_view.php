@@ -245,6 +245,6 @@
         <!-- end popular posts -->
     </div>
 
-    <div><?php include "views/wikis.php"?></div>
+    <div id="wikis-section"><?php include "views/wikis.php"?></div>
 </main>
 <!-- main ends here -->
