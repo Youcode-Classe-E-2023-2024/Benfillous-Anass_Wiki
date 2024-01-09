@@ -110,3 +110,7 @@ function showForm() {
     document.querySelector("#category-form").classList.remove("hidden");
 }
 
+$("#editCategoryBtn").on("click", () => {
+    updateCategory(currentCategoryId);
+    getCategories();
+})
