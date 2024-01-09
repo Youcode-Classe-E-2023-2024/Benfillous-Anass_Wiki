@@ -89,3 +89,17 @@ function updateCategory(categoryId) {
         editCategoryInput.style.border = "1px solid red";
 }
 
+function deleteCategory(categoryId) {
+    $.post(
+        "index.php?page=dashboard",
+        {
+            category_id: categoryId,
+            delete_category: true
+        },
+        (data) => {
+            console.log(data);
+            getCategories();
+        }
+    )
+}
+
