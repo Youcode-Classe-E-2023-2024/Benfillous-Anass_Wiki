@@ -104,3 +104,12 @@ function deleteTag(tagId) {
 
 getTags();
 
+function showTagForm() {
+    document.querySelector("#edit-tag-form").classList.add("hidden");
+    document.querySelector("#tag-form").classList.remove("hidden");
+}
+
+$("#editTagBtn").on("click", () => {
+    updateTag(currentTagId);
+    getTags();
+})
