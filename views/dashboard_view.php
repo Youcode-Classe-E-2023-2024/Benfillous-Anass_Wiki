@@ -977,3 +977,6 @@
         }
     }
 </script>
+
+<script src="assets/js/tag.js"></script>
+<script src="assets/js/category.js"></script>
