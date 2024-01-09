@@ -16,4 +16,12 @@ class Tag {
         $stmt->bindParam(':tag_id', $tag_id);
         $stmt->execute();
     }
+
+    function deleteTag($tag_id) {
+        global $db;
+        $sql = "DELETE FROM tag WHERE tag_id = :tag_id";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':tag_id', $tag_id);
+        $stmt->execute();
+    }
 }
