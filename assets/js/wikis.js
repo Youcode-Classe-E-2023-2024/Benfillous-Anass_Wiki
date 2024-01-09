@@ -10,7 +10,6 @@ manageWikisBtn.addEventListener("click", () => {
 })
 
 
-$(addWikiBtn).click(()=> {
 $(addWikiBtn).click(() => {
     $("#wikis-container").hide();
     $("#form-section").show();
