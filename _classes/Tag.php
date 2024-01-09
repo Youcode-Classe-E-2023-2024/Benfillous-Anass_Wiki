@@ -24,4 +24,12 @@ class Tag {
         $stmt->bindParam(':tag_id', $tag_id);
         $stmt->execute();
     }
+
+    function getTags() {
+        global $db;
+        $sql = "SELECT * FROM tag";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }
