@@ -51,6 +51,9 @@
                 <li class="px-2 md:px-4 hidden md:block">
                     <a id="manage-wikis-btn" class="cursor-pointer text-gray-500 font-semibold hover:text-green-600"> Manage Wikis </a>
                 </li>
+                <li class="px-2 md:px-4 hidden md:block">
+                    <a href="index.php?page=dashboard" class="text-gray-500 font-semibold hover:text-green-600"> Dashboard </a>
+                </li>
             <?php } ?>
             <li class="px-2 md:px-4 hidden md:block">
                 <form action="index.php?page=home" method="post">
@@ -117,6 +120,5 @@
     </div>
 </footer>
 <script src="<?= PATH ?>assets/js/main.js"></script>
-<script src="<?= PATH ?>assets/js/wikis.js"></script>
 </body>
 </html>
