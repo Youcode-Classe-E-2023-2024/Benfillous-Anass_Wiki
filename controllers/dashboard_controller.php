@@ -35,3 +35,25 @@ if(isset($_POST["add_tag"])) {
     echo "tag added successfully";
     exit;
 }
+
+if(isset($_GET["get_tags"])) {
+    $tags = $tagObj->getTags();
+    echo json_encode($tags);
+    exit;
+}
+
+if(isset($_POST["delete_tag"])) {
+    $tagId = filter_input(INPUT_POST, "tag_id", FILTER_SANITIZE_SPECIAL_CHARS);
+    $tagObj->deleteTag($tagId);
+    echo "tag deleted successfully";
+    exit;
+}
+
+
+if(isset($_POST["edit_tag"])) {
+    $tag = filter_input(INPUT_POST, "tag", FILTER_SANITIZE_SPECIAL_CHARS);
+    $tagId = filter_input(INPUT_POST, "tag_id", FILTER_SANITIZE_SPECIAL_CHARS);
+    $tagObj->updateTag($tag, $tagId);
+    echo "tag updated successfully";
+    exit;
+}
