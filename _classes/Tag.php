@@ -32,4 +32,13 @@ class Tag {
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    static function wiki_tag ($tag, $wikiId) {
+        global $db;
+        $sql = "INSERT INTO wiki_tag (tag_id, wiki_id) VALUES (:tag_id, :wiki_id)";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':tag_id', $tag);
+        $stmt->bindParam(':wiki_id', $wikiId);
+        $stmt->execute();
+    }
 }
