@@ -67,3 +67,23 @@ function getTags() {
 
 
 }
+
+function updateTag(tagId) {
+    event.preventDefault();
+    if (editTagInput.value.length !== 0) {
+        $.post(
+            "index.php?page=dashboard",
+            {
+                edit_tag: true,
+                tag: editTagInput.value,
+                tag_id: tagId
+            },
+            (data) => {
+                console.log(data);
+                editTagInput.style.border = ""
+                editTagInput.value = "";
+            }
+        )
+    } else
+        editTagInput.style.border = "1px solid red";
+}
