@@ -103,3 +103,5 @@ function deleteCategory(categoryId) {
     )
 }
 
+getCategories();
+
