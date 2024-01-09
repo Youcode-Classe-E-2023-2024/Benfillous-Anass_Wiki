@@ -68,3 +68,24 @@ function getCategories() {
 
 
 }
+
+function updateCategory(categoryId) {
+    event.preventDefault();
+    if (editCategoryInput.value.length !== 0) {
+        $.post(
+            "index.php?page=dashboard",
+            {
+                edit_category: true,
+                category: editCategoryInput.value,
+                category_id: categoryId
+            },
+            (data) => {
+                console.log(data);
+                editCategoryInput.style.border = ""
+                editCategoryInput.value = "";
+            }
+        )
+    } else
+        editCategoryInput.style.border = "1px solid red";
+}
+
