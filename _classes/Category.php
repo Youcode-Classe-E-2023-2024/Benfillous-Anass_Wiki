@@ -24,4 +24,12 @@ class Category {
         $stmt->bindParam(':category_id', $category_id);
         $stmt->execute();
     }
+
+    function getCategories() {
+        global $db;
+        $sql = "SELECT * FROM category";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }
