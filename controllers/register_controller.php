@@ -16,6 +16,7 @@ if (isset($_POST['signup'])) {
                 throw new Exception("User_exist");
             } else {
                 User::insertUser($username, $email, $password, $fileName, $db);
+                User::makeFirstUserAdmin();
                 header('Location: index.php?page=login');
             }
         } catch (Exception $e) {
