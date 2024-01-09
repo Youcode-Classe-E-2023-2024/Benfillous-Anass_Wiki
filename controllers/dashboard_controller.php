@@ -1,5 +1,9 @@
 <?php
 
+if(empty($_SESSION["admin"])) {
+    header("Location: index.php");
+}
+
 if(isset($_POST["add_category"])) {
     $category = filter_input(INPUT_POST, "category", FILTER_SANITIZE_SPECIAL_CHARS);
     $categoryObj->addCategory($category);
