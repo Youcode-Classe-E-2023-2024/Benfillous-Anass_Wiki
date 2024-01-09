@@ -50,4 +50,11 @@ class Wiki {
         return $stmt->fetchAll();
     }
 
+    function getArchivedWikis() {
+        global $db;
+        $sql = "SELECT * FROM wiki WHERE archived = 1";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }
