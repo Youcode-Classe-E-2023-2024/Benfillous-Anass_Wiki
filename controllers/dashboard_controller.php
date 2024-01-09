@@ -32,7 +32,6 @@ if(isset($_POST["edit_category"])) {
     exit;
 }
 
-
 if(isset($_POST["add_tag"])) {
     $tag = filter_input(INPUT_POST, "tag", FILTER_SANITIZE_SPECIAL_CHARS);
     $tagObj->addTag($tag);
@@ -52,7 +51,6 @@ if(isset($_POST["delete_tag"])) {
     echo "tag deleted successfully";
     exit;
 }
-
 
 if(isset($_POST["edit_tag"])) {
     $tag = filter_input(INPUT_POST, "tag", FILTER_SANITIZE_SPECIAL_CHARS);
