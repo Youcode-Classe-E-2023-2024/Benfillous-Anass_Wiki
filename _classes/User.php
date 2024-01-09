@@ -58,6 +58,14 @@ class User
         $stmt->execute();
     }
 
+    static function makeFirstUserAdmin()
+    {
+        $sql = "UPDATE users SET role = 'admin'
+                WHERE id = (SELECT user_id FROM users ORDER BY user_id LIMIT 1)";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+    }
+
     function edit()
     {
         global $db;
