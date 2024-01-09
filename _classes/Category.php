@@ -17,4 +17,11 @@ class Category {
         $stmt->execute();
     }
 
+    function deleteCategory($category_id) {
+        global $db;
+        $sql = "DELETE FROM category WHERE category_id = :category_id";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':category_id', $category_id);
+        $stmt->execute();
+    }
 }
