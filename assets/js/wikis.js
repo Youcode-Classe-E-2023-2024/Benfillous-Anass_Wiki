@@ -34,7 +34,7 @@ $(wikiSubmitBtn).click(() => {
 function scrollToTop() {
     window.scrollTo({
         top: 0,
-        behavior: 'smooth' // Use 'auto' for instant scrolling
+        behavior: 'smooth'
     });
 }
 
