@@ -3,17 +3,17 @@
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
-    <form method="post" action="index.php?page=login" class="form">
+    <form class="form">
         <h3 class="text-black">Login Here</h3>
 
-        <label for="username">Username</label>
-        <input class="login-input" name="email" type="text" placeholder="Email" id="username" required>
+        <label for="username">Email</label>
+        <input class="login-input" name="email" type="text" placeholder="Email" id="loginEmail" required>
 
         <label for="password">Password</label>
-        <input class="login-input" name="password" type="password" placeholder="Password" id="password" required>
+        <input class="login-input" name="password" type="password" placeholder="Password" id="loginPassword" required>
 
         <div class="social bg-gray-200 hover:bg-gray-300 flex justify-center">
-            <button class="bg-gray" name="login" id="btn">Sign In</button>
+            <button class="bg-gray" type="button" name="login" id="login-btn">Sign In</button>
         </div>
         <div class="social items-center flex-col">
             <p class="text-sm mb-4">Or</p>
@@ -25,3 +25,5 @@
         </div>
     </form>
 </main>
+
+<script src="assets/js/login.js"></script>
