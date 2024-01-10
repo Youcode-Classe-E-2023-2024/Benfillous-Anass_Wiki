@@ -25,6 +25,7 @@
             </table>
         </div>
 
+        <div id="empty-list-container" class="text-center"></div>
 
         <!--form section-->
         <div id="form-section" class="container w-full flex flex-wrap mx-auto px-2 lg:pt-4">
@@ -107,6 +108,12 @@
                             <button class="shadow bg-yellow-700 hover:bg-yellow-500 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                                     type="button" id="wiki-submit">
                                 Save
+                            </button>
+                        </div>
+                        <div class="md:flex md:items-center">
+                            <button class="shadow bg-yellow-700 hover:bg-yellow-500 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                                    type="button" id="edit-wiki-submit">
+                                Update
                             </button>
                         </div>
                     </form>

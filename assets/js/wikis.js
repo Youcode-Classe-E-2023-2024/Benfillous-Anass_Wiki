@@ -1,6 +1,7 @@
 const manageWikisBtn = document.getElementById("manage-wikis-btn");
 const addWikiBtn = document.getElementById("add-wiki-btn");
 const wikiSubmitBtn = document.getElementById("wiki-submit");
+const editWikiSubmitBtn = document.getElementById("edit-wiki-submit");
 $("#wikis-section").hide();
 manageWikisBtn.addEventListener("click", () => {
     $("#home-section").hide();
@@ -13,6 +14,8 @@ manageWikisBtn.addEventListener("click", () => {
 $(addWikiBtn).click(() => {
     $("#wikis-container").hide();
     $("#form-section").show();
+    $(editWikiSubmitBtn).hide();
+    $("#empty-list-container").html("");
 
 })
 
@@ -25,6 +28,7 @@ $(wikiSubmitBtn).click(() => {
     $("#wikis-container").show();
     $("#form-section").hide();
     scrollToTop();
+    getWikis();
 })
 
 function scrollToTop() {
@@ -58,8 +62,15 @@ function createWiki() {
 
 const wikisList = document.getElementById("wikis-list");
 
+let currentWikiId;
+let currentWikiTitle;
+let currentWikiContent;
+let currentWikiTags;
+let currentWikiCategory;
+
 function getWikis() {
     wikisList.innerHTML = "";
+    $("#empty-list-container").html("");
     $.get(
         "index.php?page=home&getWikis=true",
         (data) => {
@@ -72,17 +83,90 @@ function getWikis() {
                     <td class="w-32 h-6 text-center rounded-lg">${wiki.content}</td>
                     <td class="w-24 h-6 text-center rounded-lg">${wiki.creator}</td>
                     <td class="w-24 h-6 text-center rounded-lg">tag</td>
-                    <td class="w-24 h-6 text-center rounded-lg">${wiki.category}</td>
+                    <td class="w-24 h-6 text-center rounded-lg">${wiki.category_id}</td>
                     <td class="w-24 h-6 text-center rounded-lg">${wiki.created_date}</td>
                     <td class="w-24 h-6 text-center rounded-lg">
-                        <button>Edit</button>
-                        <button>Delete</button>
+                        <button class="edit-btn" data-wiki-id="${wiki.wiki_id}" data-wiki-title="${wiki.title}"
+                        data-wiki-content="${wiki.content}" data-wiki-tag="tag"
+                        data-wiki-category="${wiki.category_id}">Edit</button>
+                        <button class="delete-btn" data-wiki-id="${wiki.wiki_id}">Delete</button>
                     </td>
                 </tr>`;
-
             })
+
+            if(wikis.length === 0) {
+                $("#empty-list-container").html("<div>List is Empty</div>");
+            }
+        }
+    )
+
+    $(wikisList).ready(() => {
+        $(wikisList).off("click", ".edit-btn").on("click", ".edit-btn", function () {
+            currentWikiId = $(this).data("wiki-id");
+            currentWikiTitle = $(this).data("wiki-title");
+            currentWikiContent = $(this).data("wiki-content");
+            currentWikiTags = $(this).data("wiki-tag");
+            currentWikiCategory = $(this).data("wiki-category");
+            titleInput.value = currentWikiTitle;
+            contentInput.value = currentWikiContent;
+            $(tagInput).val(currentWikiTags);
+            categoryInput.value = currentWikiCategory;
+            $("#wikis-container").hide();
+            $(wikiSubmitBtn).hide();
+            $(editWikiSubmitBtn).show();
+            $("#form-section").show();
+            $("#empty-list-container").html("");
+        });
+    })
+
+    $(wikisList).ready(() => {
+        $(wikisList).off("click", ".delete-btn").on("click", ".delete-btn", function () {
+            currentWikiId = $(this).data("wiki-id");
+            deleteWiki();
+        });
+    })
+}
+
+function deleteWiki() {
+    $.post(
+        "index.php?page=home",
+        {
+            wiki_id: currentWikiId,
+            delete_wiki: true
+        },
+        (data) => {
+            getWikis();
         }
     )
 }
+
+function editWiki() {
+    $.post(
+        "index.php?page=home",
+        {
+            wiki_id: currentWikiId,
+            title: currentWikiTitle,
+            content: currentWikiContent,
+            tag: currentWikiTags,
+            category: currentWikiCategory,
+            edit_wiki: true
+        },
+        (data) => {
+            console.log(data);
+            getWikis();
+        }
+    )
+}
+
+$(editWikiSubmitBtn).click(() => {
+    editWiki();
+    titleInput.value = "";
+    contentInput.value = "";
+    $(tagInput).val("");
+    categoryInput.value = "";
+    $("#wikis-container").show();
+    $("#form-section").hide();
+    scrollToTop();
+})
 
 getWikis();

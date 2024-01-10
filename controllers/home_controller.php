@@ -7,9 +7,7 @@ if (isset($_POST['logout'])) {
 
 if (isset($_GET["getWikis"])) {
     $wikis = $wikiObj->getWikis();
-
     echo json_encode($wikis);
-    /*echo "success";*/
     exit;
 }
 
@@ -18,5 +16,23 @@ if (isset($_POST["create_wiki"])) {
     $date = date("U");
     $wikiObj->addWiki($title, $content, $tag, $category, $_SESSION["user_id"], $date);
     echo "wiki added successfully";
+    exit;
+}
+
+
+if (isset($_POST["delete_wiki"])) {
+    $wiki_id = $_POST["wiki_id"];
+    $wikiObj->deleteWiki($wiki_id);
+    echo "success";
+    exit;
+}
+
+
+if (isset($_POST["edit_wiki"])) {
+    extract($_POST);
+
+    $date = date("U");
+    $wikiObj->updateWiki($wiki_id, $tag, $title, $content, $category, $date);
+    echo "success";
     exit;
 }
