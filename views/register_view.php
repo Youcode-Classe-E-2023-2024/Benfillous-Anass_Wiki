@@ -29,7 +29,7 @@
         <input class="login-input" name="password" type="password" placeholder="Password" id="password" required>
 
         <div class="social flex justify-center bg-gray-200 hover:bg-gray-300">
-            <button name="signup" id="btn">Sign Up</button>
+            <button name="signup" id="signup-btn">Sign Up</button>
         </div>
         <div class="social items-center flex-col">
             <p class="text-sm mb-4">Or</p>
@@ -60,3 +60,4 @@
         }
     });
 </script>
+<script src="assets/js/register.js"></script>
