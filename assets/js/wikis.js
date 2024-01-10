@@ -145,10 +145,10 @@ function editWiki() {
         "index.php?page=home",
         {
             wiki_id: currentWikiId,
-            title: currentWikiTitle,
-            content: currentWikiContent,
-            tag: currentWikiTags,
-            category: currentWikiCategory,
+            title: titleInput.value,
+            content: contentInput.value,
+            tag: $(tagInput).val(),
+            category: categoryInput.value,
             edit_wiki: true
         },
         (data) => {

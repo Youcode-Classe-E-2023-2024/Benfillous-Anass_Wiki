@@ -19,17 +19,16 @@ class Wiki {
 
     function updateWiki($wiki_id, $tags, $title, $content, $category, $updated_date) {
         global $db;
-        $sql = "UPDATE wiki SET  title = :title, content = :content, category_id = :category_id, updated_date :updated_date WHERE tag_id = :tag_id";
+        $sql = "UPDATE wiki SET  title = :title, content = :content, category_id = :category_id, updated_date = :updated_date WHERE wiki_id = :wiki_id";
         $stmt = $db->prepare($sql);
-        $stmt->bindParam(':title', $title);
-        $stmt->bindParam(':content', $content);
-        $stmt->bindParam(':category_id', $category);
-        $stmt->bindParam(':updated_date', $updated_date);
-        $stmt->bindParam(':wiki_id', $wiki_id);
+        $stmt->bindParam(':title', $title, 2);
+        $stmt->bindParam(':content', $content, 2);
+        $stmt->bindParam(':category_id', $category, 1);
+        $stmt->bindParam(':updated_date', $updated_date, 1);
+        $stmt->bindParam(':wiki_id', $wiki_id, 1);
         $stmt->execute();
-
 /*        foreach ($tags as $tag) {
-            Tag::update_wiki_tag($tag);
+            Tag::update_wiki_tag($tag, $wiki_id);
         }*/
     }
 

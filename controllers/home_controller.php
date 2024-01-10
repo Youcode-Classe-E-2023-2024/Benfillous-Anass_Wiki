@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 
 if (isset($_POST['logout'])) {
     $authentication = new Authentication();
@@ -30,7 +32,6 @@ if (isset($_POST["delete_wiki"])) {
 
 if (isset($_POST["edit_wiki"])) {
     extract($_POST);
-
     $date = date("U");
     $wikiObj->updateWiki($wiki_id, $tag, $title, $content, $category, $date);
     echo "success";
