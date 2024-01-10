@@ -40,6 +40,14 @@ class Wiki {
         $stmt->execute();
     }
 
+    function archiveWiki($wiki_id) {
+        global $db;
+        $sql = "UPDATE wiki SET archived=1 WHERE wiki_id = :wiki_id";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':wiki_id', $wiki_id);
+        $stmt->execute();
+    }
+
     function getWikis() {
         global $db;
         $sql = "SELECT * FROM wiki WHERE archived = 0";
