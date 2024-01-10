@@ -26,7 +26,10 @@
     </a>
     <div class="relative">
         <label for="Search" class="sr-only"> Search </label>
-
+        <select id="search-type">
+            <option value="title">Title</option>
+            <option value="tag">Tag</option>
+        </select>
         <input
                 type="text"
                 id="search-input"
