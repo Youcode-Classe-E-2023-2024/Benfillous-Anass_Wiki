@@ -75,8 +75,11 @@ function getWikis() {
         "index.php?page=home&getWikis=true",
         (data) => {
             let wikis = JSON.parse(data);
-
+            let archiveBtn = "";
             wikis.forEach((wiki) => {
+                if (admin) {
+                    archiveBtn = `<button class="archive-btn" data-wiki-id="${wiki.wiki_id}">Archive</button>`
+                }
                 wikisList.innerHTML += `<tr class="p-6">
                     <td class="h-6 w-10 text-center rounded">${wiki.wiki_id}</td>
                     <td class="h-6 w-32 text-center rounded">${wiki.title}</td>
@@ -90,11 +93,12 @@ function getWikis() {
                         data-wiki-content="${wiki.content}" data-wiki-tag="tag"
                         data-wiki-category="${wiki.category_id}">Edit</button>
                         <button class="delete-btn" data-wiki-id="${wiki.wiki_id}">Delete</button>
+                        ${archiveBtn}
                     </td>
                 </tr>`;
             })
 
-            if(wikis.length === 0) {
+            if (wikis.length === 0) {
                 $("#empty-list-container").html("<div>List is Empty</div>");
             }
         }
@@ -117,12 +121,15 @@ function getWikis() {
             $("#form-section").show();
             $("#empty-list-container").html("");
         });
-    })
 
-    $(wikisList).ready(() => {
         $(wikisList).off("click", ".delete-btn").on("click", ".delete-btn", function () {
             currentWikiId = $(this).data("wiki-id");
             deleteWiki();
+        });
+
+        $(wikisList).off("click", ".archive-btn").on("click", ".archive-btn", function () {
+            currentWikiId = $(this).data("wiki-id");
+            archiveWiki();
         });
     })
 }
@@ -168,5 +175,19 @@ $(editWikiSubmitBtn).click(() => {
     $("#form-section").hide();
     scrollToTop();
 })
+
+
+function archiveWiki() {
+    $.post(
+        "index.php?page=home",
+        {
+            wiki_id: currentWikiId,
+            archive_wiki: true
+        },
+        (data) => {
+            getWikis();
+        }
+    )
+}
 
 getWikis();
