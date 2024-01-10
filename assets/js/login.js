@@ -19,7 +19,6 @@ loginBtn.addEventListener('click', (event) => {
         success: (response) => {
             const data = JSON.parse(response);
             console.log(data);
-            window.location.href = `index.php?page=${data.success}&success`;
             if (data.success) {
                 console.log(data.success);
                 // loginForm.style.display = 'none';
@@ -27,7 +26,7 @@ loginBtn.addEventListener('click', (event) => {
                 // setTimeout(() => {
                 //     window.location.href = 'index.php?page=home&success';
                 // }, 3000);
-
+                window.location.href = `index.php?page=${data.success}&success=true`;
             } else if (data.error) {
                 console.log(data.error);
                 Swal.fire({icon: "error", title: "Error", text: data.error});
