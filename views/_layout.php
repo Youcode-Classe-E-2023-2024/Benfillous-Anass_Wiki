@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?= ucfirst($page) ?></title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
@@ -67,7 +68,6 @@
         <li class="px-2 md:px-4">
             <a href="#" class="text-gray-500 font-semibold hover:text-green-600"> Contact </a>
         </li>
-
         <?php if (isset($_SESSION["login"])) {
 
             if (empty($_SESSION["admin"])) {
