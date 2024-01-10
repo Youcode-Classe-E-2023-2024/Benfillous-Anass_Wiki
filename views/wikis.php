@@ -185,16 +185,24 @@
                         .end().filter("[href='#" + id + "']").parent().addClass("font-bold border-yellow-600");
                 }
             });
-
+            let admin = false;
         </script>
 
         <script src="<?= PATH ?>assets/js/wikis.js"></script>
 
         <?php if (isset($_GET["wikis"])) { ?>
             <script>
-              $("#home-section").hide();
+                $("#home-section").hide();
                 $("#wikis-section").show();
                 $("#form-section").hide();
+            </script>
+        <?php } ?>
+
+
+
+        <?php if (isset($_SESSION["admin"])) { ?>
+            <script>
+                admin = true;
             </script>
         <?php } ?>
     </div>
