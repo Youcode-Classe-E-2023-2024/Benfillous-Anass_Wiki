@@ -1,26 +1,24 @@
 <?php
 
-if (isset($_POST['login'])) {
-    extract($_POST);
+global $db;
+
+if (isset($_POST["req"]) && $_POST["req"] == "login") {
+    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+    $password = $_POST["password"];
     $userChecker = User::user_checker($email, $db);
 
-    try {
-        if ($userChecker) {
-            if (password_verify(trim($password), $userChecker["password"])) {
-                $authentication = new Authentication();
-                if ($userChecker["role"] == "admin")
-                    $authentication->login($userChecker["user_id"], "dashboard");
-                else
-                    $authentication->login($userChecker["user_id"], "home");
-
-            } else {
-                throw new Exception("password_incorrect");
-            }
-        } else {
-            throw new Exception("User_doesnt_exist");
+    if (!$userChecker) {
+        echo json_encode(["error" => "User does not exist."]);
+    } elseif (!password_verify($password, $userChecker["password"])) {
+        echo json_encode(["error" => "Password is incorrect."]);
+    } else {
+        $checkLogin = new User($userChecker["user_id"]);
+        $access = "home";
+        if ($userChecker["role"] == "admin") {
+            $access = "dashboard";
         }
-    } catch (Exception $e) {
-        // Handle the exception here
-        header("Location: index.php?page=login&error=" . $e->getMessage());
+        Authentication::login($userChecker["user_id"], $access);
+        echo json_encode(["success" => $access]);
     }
+    exit;
 }
