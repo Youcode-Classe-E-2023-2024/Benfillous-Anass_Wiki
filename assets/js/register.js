@@ -1,10 +1,12 @@
+const signupBtn = document.getElementById("signup-btn");
+
 signupBtn.addEventListener('click', (event) => {
     event.preventDefault();
 
     // Sign up inputs
-    const userName = document.getElementById("signUpName").value;
-    const signUpEmail = document.getElementById("signUpEmail").value;
-    const signUpPassword = document.getElementById("signUpPassword").value;
+    const userName = document.getElementById("username").value;
+    const signUpEmail = document.getElementById("email").value;
+    const signUpPassword = document.getElementById("password").value;
     const signUpImage = document.getElementById("imageInput").files[0];
 
     // Create FormData object
@@ -18,7 +20,7 @@ signupBtn.addEventListener('click', (event) => {
     // AJAX request
     $.ajax({
         type: "POST",
-        url: "index.php?page=authentication",
+        url: "index.php?page=register",
         data: formData,
         contentType: false,
         processData: false,
@@ -40,7 +42,9 @@ signupBtn.addEventListener('click', (event) => {
                     icon: "success",
                     title: data.success
                 });
-
+                setTimeout(()=> {
+                    window.location.href = "index.php?page=login";
+                }, 2000);
                 // Additional success logic (e.g., redirecting to another page)
             } else if (data.errors) {
                 console.log(data.errors);
