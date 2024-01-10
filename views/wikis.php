@@ -188,9 +188,11 @@
             let admin = false;
         </script>
 
-        <script src="<?= PATH ?>assets/js/wikis.js"></script>
+        <?php if (isset($_SESSION["login"])) { ?>
+            <script src="<?= PATH ?>assets/js/wikis.js"></script>
+        <?php } ?>
 
-        <?php if (isset($_GET["wikis"])) { ?>
+        <?php if (isset($_SESSION["login"]) && isset($_GET["wikis"])) { ?>
             <script>
                 $("#home-section").hide();
                 $("#wikis-section").show();
