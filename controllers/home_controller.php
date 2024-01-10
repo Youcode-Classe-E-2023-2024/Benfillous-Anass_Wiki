@@ -29,6 +29,13 @@ if (isset($_POST["delete_wiki"])) {
     exit;
 }
 
+if (isset($_POST["archive_wiki"])) {
+    $wiki_id = $_POST["wiki_id"];
+    $wikiObj->archiveWiki($wiki_id);
+    echo "success";
+    exit;
+}
+
 
 if (isset($_POST["edit_wiki"])) {
     extract($_POST);
