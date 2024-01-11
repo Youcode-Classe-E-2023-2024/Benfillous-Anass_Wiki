@@ -50,21 +50,3 @@ if (isset($_GET["search_category"])) {
     echo json_encode($searchArray);
     exit;
 }
-
-if (isset($_GET["get_wiki_tags"])) {
-    $wiki_id = $_GET["wiki_id"];
-    $wikiTags = Tag::get_wiki_tag($wiki_id);
-
-    $searchArray = [];
-
-    foreach ($searchedData as $data) {
-        $wikiTags = Tag::get_wiki_tag($data["wiki_id"]);
-
-        $searchArray[] = [
-            "tags" => $wikiTags,
-            "wiki_infos" => $data
-        ];
-    }
-    echo json_encode($searchArray);
-    exit;
-}
