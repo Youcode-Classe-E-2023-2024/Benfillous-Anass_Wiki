@@ -26,7 +26,6 @@
                 searchedData.forEach((item) => {
                     let tags = item.tags;
                     let tagHtml = "";
-                    console.log(item.wiki_infos);
                     tags.forEach((tag) => {
                         if (tag) {
                             tagHtml += `<div class="flex justify-start">
