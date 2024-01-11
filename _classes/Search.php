@@ -30,5 +30,20 @@ class Search
 
         return $res;
     }
+
+    static function searchForCategory($category)
+    {
+        global $db;
+        $tag = "%" . "$tag" . "%";
+        $sql = "SELECT category.*, wiki.* FROM wiki
+                JOIN category ON wiki.category_id = category.category_id
+                WHERE category LIKE :category";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(":category", $category, PDO::PARAM_STR);
+        $stmt->execute();
+        $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $res;
+    }
 }
 
