@@ -20,7 +20,9 @@
             "index.php?page=search_bar&search_" + searchType.value + "=true&input_value=" + searchInput.value,
             (data) => {
                 let searchedData = JSON.parse(data);
-
+                if (searchedData.length === 0) {
+                    resultsContainer.innerHTML = '<div class="justify-center flex items-center h-screen">list is empty</div>';
+                }
                 searchedData.forEach((item) => {
                     let tags = item.tags;
                     let tagHtml = "";
