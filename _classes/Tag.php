@@ -50,4 +50,14 @@ class Tag {
         $stmt->bindParam(':wiki_id', $wiki_id);
         $stmt->execute();
     }
+
+    static function get_wiki_tag($wiki_id) {
+        global $db;
+        $sql = "SELECT tag.* FROM wiki_tag
+                JOIN tag ON wiki_tag.tag_id = tag.tag_id
+                WHERE wiki_tag.wiki_id = ?";
+        $stmt = $db->prepare($sql);
+        $stmt->execute([$wiki_id]);
+        return $stmt->fetchAll();
+    }
 }
