@@ -24,11 +24,12 @@
     <a href="index.php" class="px-2 lg:px-0 font-bold capitalize">
         WIKI
     </a>
-    <div class="relative">
+    <div class="relative flex">
         <label for="Search" class="sr-only"> Search </label>
-        <select id="search-type">
+        <select id="search-type" class="dark:border-gray-300 mr-3">
             <option value="title">Title</option>
             <option value="tag">Tag</option>
+            <option value="category">Category</option>
         </select>
         <input
                 type="text"
