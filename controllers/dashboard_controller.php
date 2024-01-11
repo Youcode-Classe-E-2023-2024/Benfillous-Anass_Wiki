@@ -59,3 +59,20 @@ if(isset($_POST["edit_tag"])) {
     echo "tag updated successfully";
     exit;
 }
+
+if (isset($_GET["getArchivedWikis"])) {
+
+    $archivedWikis = $wikiObj->getArchivedWikis();
+
+    echo json_encode($archivedWikis);
+    exit;
+}
+
+if(isset($_POST["restore"])) {
+    $wiki_id = $_POST["wikiId"];
+
+    $wikiObj->restoreWiki($wiki_id);
+
+    echo "wiki restored successfully";
+    exit;
+}
