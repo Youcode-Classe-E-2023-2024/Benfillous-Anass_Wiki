@@ -8,8 +8,24 @@ if (isset($_POST['logout'])) {
 }
 
 if (isset($_GET["getWikis"])) {
-    $wikis = $wikiObj->getWikis();
-    echo json_encode($wikis);
+    if (isset($_SESSION["admin"]))
+        $wikis = $wikiObj->getWikis();
+    else
+        $wikis = $wikiObj->getMyWikis($_SESSION["user_id"]);
+
+
+
+    $searchArray = [];
+
+    foreach ($wikis as $data) {
+        $wikiTags = Tag::get_wiki_tag($data["wiki_id"]);
+
+        $searchArray[] = [
+            "tags" => $wikiTags,
+            "wiki_infos" => $data
+        ];
+    }
+    echo json_encode($searchArray);
     exit;
 }
 
