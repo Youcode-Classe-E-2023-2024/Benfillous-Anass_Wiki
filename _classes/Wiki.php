@@ -48,6 +48,14 @@ class Wiki {
         $stmt->execute();
     }
 
+    function restoreWiki($wiki_id) {
+        global $db;
+        $sql = "UPDATE wiki SET archived=0 WHERE wiki_id = :wiki_id";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':wiki_id', $wiki_id);
+        $stmt->execute();
+    }
+
     function getWikis() {
         global $db;
         $sql = "SELECT wiki.*, users.username, users.picture, users.email, category.category FROM wiki 
