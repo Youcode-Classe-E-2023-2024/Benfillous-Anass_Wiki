@@ -50,15 +50,43 @@ class Wiki {
 
     function getWikis() {
         global $db;
-        $sql = "SELECT * FROM wiki WHERE archived = 0";
+        $sql = "SELECT wiki.*, users.username, users.picture, users.email, category.category FROM wiki 
+         JOIN users ON wiki.creator = users.user_id
+         JOIN category ON wiki.category_id = category.category_id
+         WHERE archived = 0 ORDER BY wiki_id DESC";
         $stmt = $db->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
+    static function getWiki($wikiId) {
+        global $db;
+        $sql = "SELECT wiki.*, users.username, users.picture, users.email, category.category FROM wiki 
+         JOIN users ON wiki.creator = users.user_id
+         JOIN category ON wiki.category_id = category.category_id
+         WHERE archived = 0 AND wiki_id = ? ORDER BY wiki_id DESC";
+        $stmt = $db->prepare($sql);
+        $stmt->execute([$wikiId]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    function getMyWikis($creator) {
+        global $db;
+        $sql = "SELECT wiki.*, users.username, users.picture, users.email, category.category FROM wiki 
+         JOIN users ON wiki.creator = users.user_id
+         JOIN category ON wiki.category_id = category.category_id
+         WHERE archived = 0 AND creator = ? ORDER BY wiki_id DESC";
+        $stmt = $db->prepare($sql);
+        $stmt->execute([$creator]);
+        return $stmt->fetchAll();
+    }
+
     function getArchivedWikis() {
         global $db;
-        $sql = "SELECT * FROM wiki WHERE archived = 1";
+        $sql = "SELECT wiki.*, users.username, users.email, users.picture, category.category FROM wiki 
+         JOIN users ON wiki.creator = users.user_id
+         JOIN category ON wiki.category_id = category.category_id 
+         WHERE archived = 1 ORDER BY wiki_id DESC";
         $stmt = $db->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
