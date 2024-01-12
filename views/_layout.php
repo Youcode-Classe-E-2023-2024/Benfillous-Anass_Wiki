@@ -19,26 +19,29 @@
 </head>
 <body class="max-w-screen-lg mx-auto">
 
-<!-- header -->
-<header class="flex items-center justify-between py-2">
-    <a href="index.php" class="px-2 lg:px-0 font-bold capitalize">
-        WIKI
-    </a>
-    <div class="relative flex">
-        <label for="Search" class="sr-only"> Search </label>
-        <select id="search-type" class="dark:border-gray-300 mr-3">
-            <option value="title">Title</option>
-            <option value="tag">Tag</option>
-            <option value="category">Category</option>
-        </select>
-        <input
-                type="text"
-                id="search-input"
-                placeholder="Search for..."
-                class="w-full rounded-md border-gray-200 py-2.5 pe-10 shadow-sm sm:text-sm"
-        />
 
-        <span class="absolute inset-y-0 end-0 grid w-10 place-content-center">
+<?php if ((isset($_GET["page"]) && ($_GET["page"] !== "login" && $_GET["page"] !== "register")) || !isset($_GET["page"])) { ?>
+    <!-- header -->
+    <header class="flex items-center justify-between py-2">
+        <a href="index.php" class="px-2 lg:px-0 font-bold capitalize">
+            WIKI
+        </a>
+<!--        --><?php /*if (!isset($_GET["page"]) || (isset($_GET["page"]) && $_GET["page"] == "home")) {*/?>
+        <div class="relative flex">
+            <label for="Search" class="sr-only"> Search </label>
+            <select id="search-type" class="dark:border-gray-300 mr-3">
+                <option value="title">Title</option>
+                <option value="tag">Tag</option>
+                <option value="category">Category</option>
+            </select>
+            <input
+                    type="text"
+                    id="search-input"
+                    placeholder="Search for..."
+                    class="w-full rounded-md border-gray-200 py-2.5 pe-10 shadow-sm sm:text-sm"
+            />
+
+            <span class="absolute inset-y-0 end-0 grid w-10 place-content-center">
     <button type="button" id="search-btn" class="text-gray-600 hover:text-gray-700">
       <span class="sr-only">Search</span>
 
@@ -58,55 +61,65 @@
       </svg>
     </button>
   </span>
-    </div>
-    <ul class="hidden md:inline-flex items-center">
-        <li class="px-2 md:px-4">
-            <a href="index.php" class="text-green-800 font-semibold hover:text-green-600"> Home </a>
-        </li>
-        <li class="px-2 md:px-4">
-            <a href="#" class="text-gray-500 font-semibold hover:text-green-600"> About </a>
-        </li>
-        <li class="px-2 md:px-4">
-            <a href="#" class="text-gray-500 font-semibold hover:text-green-600"> Press </a>
-        </li>
-        <li class="px-2 md:px-4">
-            <a href="#" class="text-gray-500 font-semibold hover:text-green-600"> Contact </a>
-        </li>
-        <?php if (isset($_SESSION["login"])) {
+        </div>
+<!--        --><?php /*}*/?>
+        <ul class="hidden md:inline-flex items-center">
+            <li class="px-2 md:px-4">
+                <a href="index.php" class="text-green-800 font-semibold hover:text-green-600"> Home </a>
+            </li>
+            <li class="px-2 md:px-4">
+                <a href="#" class="text-gray-500 font-semibold hover:text-green-600"> About </a>
+            </li>
+            <li class="px-2 md:px-4">
+                <a href="#" class="text-gray-500 font-semibold hover:text-green-600"> Press </a>
+            </li>
+            <li class="px-2 md:px-4">
+                <a href="#" class="text-gray-500 font-semibold hover:text-green-600"> Contact </a>
+            </li>
+            <?php if (isset($_SESSION["login"])) {
 
-            if (empty($_SESSION["admin"])) {
-                ?>
+                if (empty($_SESSION["admin"])) {
+                    ?>
+                    <li class="px-2 md:px-4 hidden md:block">
+                        <a id="manage-wikis-btn" href="index.php?page=home&wikis=true"
+                           class="cursor-pointer text-gray-500 font-semibold hover:text-green-600"> Manage My Wikis </a>
+                    </li>
+                <?php } else { ?>
+                    <li class="px-2 md:px-4 hidden md:block">
+                        <a id="manage-wikis-btn" href="index.php?page=home&wikis=true"
+                           class="cursor-pointer text-gray-500 font-semibold hover:text-green-600"> Manage Wikis </a>
+                    </li>
+                    <li class="px-2 md:px-4 hidden md:block">
+                        <a href="index.php?page=dashboard" class="text-gray-500 font-semibold hover:text-green-600">
+                            Dashboard </a>
+                    </li>
+                <?php } ?>
                 <li class="px-2 md:px-4 hidden md:block">
-                    <a id="manage-wikis-btn" class="cursor-pointer text-gray-500 font-semibold hover:text-green-600"> Manage My Wikis </a>
+                    <form action="index.php?page=home" method="post">
+                        <button name="logout" class="text-gray-500 font-semibold hover:text-green-600"> Logout</button>
+                    </form>
                 </li>
             <?php } else { ?>
                 <li class="px-2 md:px-4 hidden md:block">
-                    <a id="manage-wikis-btn" class="cursor-pointer text-gray-500 font-semibold hover:text-green-600"> Manage Wikis </a>
+                    <a href="index.php?page=login" class="text-gray-500 font-semibold hover:text-green-600"> Login </a>
                 </li>
                 <li class="px-2 md:px-4 hidden md:block">
-                    <a href="index.php?page=dashboard" class="text-gray-500 font-semibold hover:text-green-600"> Dashboard </a>
+                    <a href="index.php?page=register" class="text-gray-500 font-semibold hover:text-green-600">
+                        Register </a>
                 </li>
+
             <?php } ?>
-            <li class="px-2 md:px-4 hidden md:block">
-                <form action="index.php?page=home" method="post">
-                    <button name="logout" class="text-gray-500 font-semibold hover:text-green-600"> Logout</button>
-                </form>
-            </li>
-        <?php } else { ?>
-            <li class="px-2 md:px-4 hidden md:block">
-                <a href="index.php?page=login" class="text-gray-500 font-semibold hover:text-green-600"> Login </a>
-            </li>
-            <li class="px-2 md:px-4 hidden md:block">
-                <a href="index.php?page=register" class="text-gray-500 font-semibold hover:text-green-600">
-                    Register </a>
-            </li>
+        </ul>
 
-        <?php } ?>
-    </ul>
-
-</header>
-<!-- header ends here -->
-
+    </header>
+    <!-- header ends here -->
+<?php } else { ?>
+<ul class="hidden md:inline-flex items-center">
+    <a href="index.php" class="px-2 lg:px-0 font-bold capitalize">
+        WIKI
+    </a>
+</ul>
+    <?php } ?>
 <?php include_once 'views/' . $page . '_view.php'; ?>
 
 <!-- footer -->
