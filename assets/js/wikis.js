@@ -1,6 +1,7 @@
 const manageWikisBtn = document.getElementById("manage-wikis-btn");
 const addWikiBtn = document.getElementById("add-wiki-btn");
 const wikiSubmitBtn = document.getElementById("wiki-submit");
+const wikiSection = document.getElementById("wikis-section");
 const editWikiSubmitBtn = document.getElementById("edit-wiki-submit");
 
 $("#wikis-section").hide();
@@ -10,7 +11,6 @@ manageWikisBtn.addEventListener("click", () => {
     $("#wikis-container").show();
     $("#form-section").hide();
 })
-
 
 $(addWikiBtn).click(() => {
     $("#wikis-container").hide();
@@ -73,6 +73,7 @@ let currentWikiContent;
 let currentWikiTags;
 let currentWikiCategory;
 
+
 function getWikis() {
     wikisList.innerHTML = "";
     $("#empty-list-container").html("");
@@ -80,6 +81,7 @@ function getWikis() {
         "index.php?page=home&getWikis=true",
         (data) => {
             let wikis = JSON.parse(data);
+            console.log(wikis)
             let archiveBtn = "";
             wikis.forEach((wiki) => {
                 if (admin) {
@@ -105,7 +107,7 @@ function getWikis() {
                         <td class="cell-username">${wiki.wiki_infos.username}</td>
                         <td class="cell-tag flex">${tagHtml}</td>
                         <td class="cell-category">${wiki.wiki_infos.category}</td>
-                        <td class="cell-created-date">${wiki.wiki_infos.created_date}</td>
+                        <td class="cell-created-date">${formatTimestamp(wiki.wiki_infos.created_date)}</td>
                         <td class="cell-actions flex px-20 align-center">
                             <button class="action-button"><a href="index.php?page=wiki&id=${wiki.wiki_infos.wiki_id}">See More</a></button>
                             <button class="action-button edit-btn" data-wiki-id="${wiki.wiki_infos.wiki_id}" data-wiki-title="${wiki.wiki_infos.title}"
