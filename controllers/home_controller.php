@@ -56,7 +56,8 @@ if (isset($_POST["archive_wiki"])) {
 if (isset($_POST["edit_wiki"])) {
     extract($_POST);
     $date = date("U");
-    $wikiObj->updateWiki($wiki_id, $tag, $title, $content, $category, $date);
+    $oldTags = Tag::get_wiki_tag($wiki_id);
+    $wikiObj->updateWiki($wiki_id, $tag, $title, $content, $category, $date, $oldTags);
     echo "success";
     exit;
 }

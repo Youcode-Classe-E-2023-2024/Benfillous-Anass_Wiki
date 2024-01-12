@@ -80,7 +80,7 @@
                                 </label>
                             </div>
                             <div class="md:w-2/3">
-                                <select class="form-multiselect block w-full" multiple id="tag-input">
+                                <select class="form-multiselect block w-full" required multiple id="tag-input">
                                     <?php foreach ($tags as $tag) { ?>
                                         <option value="<?= $tag["tag_id"] ?>"><?= $tag["tag"] ?></option>
                                     <?php } ?>

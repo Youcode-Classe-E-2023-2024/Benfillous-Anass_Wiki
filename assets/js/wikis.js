@@ -17,7 +17,11 @@ $(addWikiBtn).click(() => {
     $("#form-section").show();
     $(editWikiSubmitBtn).hide();
     $("#empty-list-container").html("");
-
+    titleInput.value = "";
+    contentInput.value = "";
+    $(tagInput).val("");
+    categoryInput.value = "";
+    tagInput.style.border = "";
 })
 
 $(wikiSubmitBtn).click(() => {
@@ -128,7 +132,6 @@ function getWikis() {
             currentWikiCategory = $(this).data("wiki-category");
             titleInput.value = currentWikiTitle;
             contentInput.value = currentWikiContent;
-            $(tagInput).val(currentWikiTags);
             categoryInput.value = currentWikiCategory;
             $("#wikis-container").hide();
             $(wikiSubmitBtn).hide();
@@ -181,13 +184,20 @@ function editWiki() {
 }
 
 $(editWikiSubmitBtn).click(() => {
-    editWiki();
-    titleInput.value = "";
-    contentInput.value = "";
-    $(tagInput).val("");
-    categoryInput.value = "";
-    $("#wikis-container").show();
-    $("#form-section").hide();
+    let tagsInput = $(tagInput).val();
+    console.log(tagsInput.length);
+    if (tagsInput.length === 0) {
+        tagInput.style.border = "1px solid red";
+    } else {
+        editWiki();
+        titleInput.value = "";
+        contentInput.value = "";
+        $(tagInput).val("");
+        categoryInput.value = "";
+        $("#wikis-container").show();
+        $("#form-section").hide();
+        tagInput.style.border = "";
+    }
     scrollToTop();
 })
 

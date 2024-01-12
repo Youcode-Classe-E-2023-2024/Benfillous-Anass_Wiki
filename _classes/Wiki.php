@@ -17,7 +17,7 @@ class Wiki {
         }
     }
 
-    function updateWiki($wiki_id, $tags, $title, $content, $category, $updated_date) {
+    function updateWiki($wiki_id, $tags, $title, $content, $category, $updated_date, $oldTags) {
         global $db;
         $sql = "UPDATE wiki SET  title = :title, content = :content, category_id = :category_id, updated_date = :updated_date WHERE wiki_id = :wiki_id";
         $stmt = $db->prepare($sql);
@@ -27,9 +27,13 @@ class Wiki {
         $stmt->bindParam(':updated_date', $updated_date, 1);
         $stmt->bindParam(':wiki_id', $wiki_id, 1);
         $stmt->execute();
-/*        foreach ($tags as $tag) {
-            Tag::update_wiki_tag($tag, $wiki_id);
-        }*/
+
+        foreach ($oldTags as $tag) {
+            Tag::deleteWikiTag($wiki_id);
+        }
+        foreach ($tags as $tag) {
+            Tag::wiki_tag($tag, $wiki_id);
+        }
     }
 
     function deleteWiki($wiki_id) {

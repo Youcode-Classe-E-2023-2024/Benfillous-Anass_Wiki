@@ -25,6 +25,14 @@ class Tag {
         $stmt->execute();
     }
 
+    static function deleteWikiTag($wiki_id) {
+        global $db;
+        $sql = "DELETE FROM wiki_tag WHERE wiki_id = :wiki_id";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':wiki_id', $wiki_id);
+        $stmt->execute();
+    }
+
     function getTags() {
         global $db;
         $sql = "SELECT * FROM tag";
