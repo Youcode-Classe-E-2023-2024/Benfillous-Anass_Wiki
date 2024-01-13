@@ -4,6 +4,7 @@ const wikiSubmitBtn = document.getElementById("wiki-submit");
 const wikiSection = document.getElementById("wikis-section");
 const editWikiSubmitBtn = document.getElementById("edit-wiki-submit");
 
+$("#form-section").hide();
 
 $(addWikiBtn).click(() => {
     $("#wikis-container").hide();
