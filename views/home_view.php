@@ -37,12 +37,6 @@
             </div>
 
         </div>
-
-
-        <?php if (isset($_SESSION["login"])) { ?>
-            <div id="wikis-section"><?php include "views/wikis.php" ?></div>
-            <script src="assets/js/wikis.js"></script>
-        <?php } ?>
 </main>
 <!-- main ends here -->
 
