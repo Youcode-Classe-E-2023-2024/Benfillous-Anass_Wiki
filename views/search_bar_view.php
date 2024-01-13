@@ -39,8 +39,12 @@
                     })
 
                     resultsContainer.innerHTML += `<a href="index.php?page=wiki&id=${item.wiki_infos.wiki_id}"><div class="searched-item dark:bg-gray-800 my-6 dark:text-gray-50">
-        <div class="container grid grid-cols-12 mx-auto dark:bg-gray-900">
-            <div class="bg-no-repeat bg-cover dark:bg-gray-700 col-span-full lg:col-span-4" style="background-image: url('https://source.unsplash.com/random/640x480'); background-position: center center; background-blend-mode: multiply; background-size: cover;"></div>
+            <div class="container grid grid-cols-12 mx-auto dark:bg-gray-900">
+                <img
+                  src="https://source.unsplash.com/random/?news&${item.wiki_infos.wiki_id}"
+                  alt="Image Description"
+                  class="h-full w-full p-2 rounded-md"
+                />
             <div class="flex flex-col p-6 col-span-full row-span-full lg:col-span-8 lg:p-10">
                 <div class="flex justify-start">
                     <span class="px-2 py-1 text-xs rounded-full dark:bg-violet-400 dark:text-gray-900">${item.wiki_infos.category}</span>
@@ -72,9 +76,8 @@
     }
 
 
-
     function searchBarEmpty() {
-        if(searchInput.value === "") {
+        if (searchInput.value === "") {
             resultsContainer.innerHTML = '';
             $("#home-main").show();
         }
