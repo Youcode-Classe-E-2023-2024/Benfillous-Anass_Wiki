@@ -81,12 +81,12 @@
                 if (empty($_SESSION["admin"])) {
                     ?>
                     <li class="px-2 md:px-4 hidden md:block">
-                        <a id="manage-wikis-btn" href="index.php?page=home&wikis=true"
+                        <a id="manage-wikis-btn" href="index.php?page=wikis"
                            class="cursor-pointer text-gray-500 font-semibold hover:text-green-600"> Manage My Wikis </a>
                     </li>
                 <?php } else { ?>
                     <li class="px-2 md:px-4 hidden md:block">
-                        <a id="manage-wikis-btn" href="index.php?page=home&wikis=true"
+                        <a id="manage-wikis-btn" href="index.php?page=wikis"
                            class="cursor-pointer text-gray-500 font-semibold hover:text-green-600"> Manage Wikis </a>
                     </li>
                     <li class="px-2 md:px-4 hidden md:block">
