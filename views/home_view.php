@@ -3,48 +3,77 @@
     <div id="home-section">
 
         <!-- featured section -->
-        <div id="home-wikis-container" class="flex flex-wrap md:flex-no-wrap space-x-0 md:space-x-6 mb-16">
-            <!-- main post -->
 
-            <!-- sub-main posts -->
-
-            <!-- end featured section -->
+        <div id="hero-container" class="flex flex-wrap md:flex-no-wrap space-x-0 md:space-x-6 mb-16">
 
 
         </div>
-    </div>
+        <div class="flex justify-between">
+            <div id="home-wikis-container" class="flex flex-wrap md:flex-no-wrap space-x-0 md:space-x-6 mb-16">
+                <!-- main post -->
+
+                <!-- sub-main posts -->
+
+                <!-- end featured section -->
+
+            </div>
+
+            <!-- component -->
+            <div class="fixe container flex w-1/2 items-center justify-end">
+                <ul class="flex flex-col bg-gray-300 p-4">
+                <h3 class="mb-4">Categories</h3>
+                    <?php foreach ($categories as $category) { ?>
+                    <li class="border-gray-400 flex flex-row mb-2">
+                        <div class="select-none cursor-pointer bg-gray-200 rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
+                            <img src="https://source.unsplash.com/random/?category&<?= $category["category_id"] ?>" class="flex flex-col rounded-md w-10 h-10 bg-gray-300 justify-center items-center mr-4">
+                            <div class="flex-1 pl-1 mr-16">
+                                <div class="font-medium"> <?= $category["category"] ?></div>
+                            </div>
+                        </div>
+                    </li>
+                    <?php }?>
+                </ul>
+
+            </div>
+
+        </div>
+
 
         <?php if (isset($_SESSION["login"])) { ?>
             <div id="wikis-section"><?php include "views/wikis.php" ?></div>
+            <script src="assets/js/wikis.js"></script>
         <?php } ?>
 </main>
 <!-- main ends here -->
 
 <!--
 --><?php
-if (!isset($_GET["page"]) || (isset($_GET["page"]) && $_GET["page"] == "home"))
+if ((isset($_GET["page"]) && $_GET["page"] == "home") || !isset($_GET["page"]))
     include "views/search_bar_view.php";
 ?>
 
-<?php if (isset($_SESSION["login"])) { ?>
-    <script src="assets/js/wikis.js"></script>
+<?php if (!isset($_GET["wikis"])) { ?>
+    <script>
+        $("#wikis-section").hide();
+    </script>
 <?php } ?>
 
 
 <script>
 
     const homeWikisContainer = document.getElementById("home-wikis-container");
+    const heroContainer = document.getElementById("hero-container");
     let checker = 0;
 
     $.get(
-        "index.php?page=home&getWikis=true",
+        "index.php?page=home&getWikis=true&home=true",
         (data) => {
             let wikis = JSON.parse(data);
             console.log(wikis)
             wikis.forEach((wiki) => {
                 if (checker === 0) {
-                    homeWikisContainer.innerHTML = `<div class="mb-4 lg:mb-0  p-4 lg:p-0 w-full md:w-4/7 relative rounded block">
-                <img src="https://images.unsplash.com/photo-1427751840561-9852520f8ce8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
+                    heroContainer.innerHTML = `<div class="mb-4 lg:mb-0  p-4 lg:p-0 w-full md:w-4/7 relative rounded block">
+                <img src="https://source.unsplash.com/random"
                      class="rounded-md object-cover w-full h-64">
                 <span class="text-green-700 text-sm hidden md:block mt-4"> ${wiki.wiki_infos.category} </span>
                 <h1 class="text-gray-800 text-4xl font-bold mt-2 mb-2 leading-tight">
@@ -62,7 +91,7 @@ if (!isset($_GET["page"]) || (isset($_GET["page"]) && $_GET["page"] == "home"))
                     homeWikisContainer.innerHTML += `<div class="w-full md:w-4/7">
                 <!-- post 1 -->
                 <div class="rounded w-full flex flex-col md:flex-row mb-10">
-                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
+                    <img src="https://source.unsplash.com/random/?news&${wiki.wiki_infos.wiki_id}"
                          class="block md:hidden lg:block rounded-md h-64 md:h-32 m-4 md:m-0"/>
                     <div class="bg-white rounded px-4">
                         <span class="text-green-700 text-sm hidden md:block"> ${wiki.wiki_infos.category} </span>
@@ -85,25 +114,4 @@ if (!isset($_GET["page"]) || (isset($_GET["page"]) && $_GET["page"] == "home"))
             })
         }
     )
-
-
-    function formatTimestamp(timestamp) {
-        // Convert timestamp to milliseconds
-        const date = new Date(timestamp * 1000);
-
-        // Extract components
-        const day = date.getDate();
-        const month = date.getMonth() + 1; // Months are zero-based
-        const year = date.getFullYear();
-
-        const hours = date.getHours();
-        const minutes = date.getMinutes();
-
-        // Check if it's a full date or just time
-        if (day !== 1 || month !== 1 || year !== 1970) {
-            return `${day}/${month < 10 ? '0' : ''}${month}/${year}, ${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
-        } else {
-            return `${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
-        }
-    }
 </script>
