@@ -1,5 +1,8 @@
 # Wiki™ : Explorez, Créez et Partagez des Savoirs Ensemble!
 
+![Desktop-screenshot (7)](https://github.com/Youcode-Classe-E-2023-2024/Benfillous-Anass_Wiki/assets/109225791/e7cfc028-8a1e-496e-8f49-d0f461389365)
+
+
 ## Présentation
 
 Bienvenue dans le projet Enchanté, un espace numérique où les administrateurs, auteurs et chercheurs se réunissent pour créer des expériences magiques. Explorez les fonctionnalités des Chroniques en Coulisses et des Enchantements Frontaux, guidés par les technologies magiques et la structure détaillée dans ce grimoire.
