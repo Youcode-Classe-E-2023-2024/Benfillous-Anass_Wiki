@@ -8,12 +8,10 @@ if (isset($_POST['logout'])) {
 }
 
 if (isset($_GET["getWikis"])) {
-    if (isset($_SESSION["admin"]))
+    if (isset($_SESSION["admin"]) || isset($_GET["home"]))
         $wikis = $wikiObj->getWikis();
     else
         $wikis = $wikiObj->getMyWikis($_SESSION["user_id"]);
-
-
 
     $searchArray = [];
 
@@ -61,3 +59,7 @@ if (isset($_POST["edit_wiki"])) {
     echo "success";
     exit;
 }
+
+$categoryObj = new Category();
+
+$categories = array_slice($categoryObj->getCategories(), 0, 5);
