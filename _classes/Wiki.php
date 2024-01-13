@@ -1,6 +1,9 @@
 <?php
-class Wiki {
-    function addWiki($title, $content, $tags, $category, $creator, $created_date) {
+
+class Wiki
+{
+    function addWiki($title, $content, $tags, $category, $creator, $created_date)
+    {
         global $db;
         $sql = "INSERT INTO wiki (title, content, category_id, creator, created_date) VALUES (:title, :content, :category, :creator, :created_date)";
         $stmt = $db->prepare($sql);
@@ -17,7 +20,8 @@ class Wiki {
         }
     }
 
-    function updateWiki($wiki_id, $tags, $title, $content, $category, $updated_date, $oldTags) {
+    function updateWiki($wiki_id, $tags, $title, $content, $category, $updated_date, $oldTags)
+    {
         global $db;
         $sql = "UPDATE wiki SET  title = :title, content = :content, category_id = :category_id, updated_date = :updated_date WHERE wiki_id = :wiki_id";
         $stmt = $db->prepare($sql);
@@ -36,7 +40,8 @@ class Wiki {
         }
     }
 
-    function deleteWiki($wiki_id) {
+    function deleteWiki($wiki_id)
+    {
         global $db;
         $sql = "DELETE FROM wiki WHERE wiki_id = :wiki_id";
         $stmt = $db->prepare($sql);
@@ -44,7 +49,8 @@ class Wiki {
         $stmt->execute();
     }
 
-    function archiveWiki($wiki_id) {
+    function archiveWiki($wiki_id)
+    {
         global $db;
         $sql = "UPDATE wiki SET archived=1 WHERE wiki_id = :wiki_id";
         $stmt = $db->prepare($sql);
@@ -52,7 +58,8 @@ class Wiki {
         $stmt->execute();
     }
 
-    function restoreWiki($wiki_id) {
+    function restoreWiki($wiki_id)
+    {
         global $db;
         $sql = "UPDATE wiki SET archived=0 WHERE wiki_id = :wiki_id";
         $stmt = $db->prepare($sql);
@@ -60,7 +67,8 @@ class Wiki {
         $stmt->execute();
     }
 
-    function getWikis() {
+    function getWikis()
+    {
         global $db;
         $sql = "SELECT wiki.*, users.username, users.picture, users.email, category.category FROM wiki 
          JOIN users ON wiki.creator = users.user_id
@@ -71,7 +79,8 @@ class Wiki {
         return $stmt->fetchAll();
     }
 
-    static function getWiki($wikiId) {
+    static function getWiki($wikiId)
+    {
         global $db;
         $sql = "SELECT wiki.*, users.username, users.picture, users.email, category.category FROM wiki 
          JOIN users ON wiki.creator = users.user_id
@@ -82,7 +91,8 @@ class Wiki {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    function getMyWikis($creator) {
+    function getMyWikis($creator)
+    {
         global $db;
         $sql = "SELECT wiki.*, users.username, users.picture, users.email, category.category FROM wiki 
          JOIN users ON wiki.creator = users.user_id
@@ -93,7 +103,8 @@ class Wiki {
         return $stmt->fetchAll();
     }
 
-    function getArchivedWikis() {
+    function getArchivedWikis()
+    {
         global $db;
         $sql = "SELECT wiki.*, users.username, users.email, users.picture, category.category FROM wiki 
          JOIN users ON wiki.creator = users.user_id
