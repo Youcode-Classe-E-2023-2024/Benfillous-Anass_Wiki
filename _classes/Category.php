@@ -27,7 +27,7 @@ class Category {
 
     function getCategories() {
         global $db;
-        $sql = "SELECT * FROM category";
+        $sql = "SELECT * FROM category ORDER BY category_id DESC";
         $stmt = $db->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
