@@ -28,7 +28,7 @@ class User
     static function getAll()
     {
         global $db;
-        $stmt = $db->query("SELECT * FROM users");
+        $stmt = $db->query("SELECT * FROM users ORDER BY user_id DESC");
         if ($stmt)
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
