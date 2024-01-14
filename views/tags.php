@@ -5,10 +5,10 @@
     <div class="flex flex-col">
         <div class="overflow-x-auto shadow-md sm:rounded-lg">
             <div class="inline-block min-w-full align-middle">
-                <div class="overflow-hidden ">
+                <div class="overflow-hidden">
                     <div class="flex justify-between m-4">
                         <h3>Tags</h3>
-                        <a href="#tag-form" onclick="showTagForm()" class="w-40 dark:hover:bg-gray-600">Add new Category</a>
+                        <a href="#tag-form" onclick="showTagForm()" class="w-32 md:w-40 dark:hover:bg-gray-600">Add new Category</a>
                     </div>
                     <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
                         <thead class="bg-gray-100 dark:bg-gray-700">
@@ -35,7 +35,7 @@
         </div>
     </div>
 
-    <section id="tag-form" class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800 mt-20">
+    <section id="tag-form" class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800 mt-8 md:mt-16">
         <h2 class="text-lg font-semibold text-gray-700 capitalize dark:text-white">Add New Tag</h2>
 
         <form>
@@ -50,7 +50,7 @@
         </form>
     </section>
 
-    <section id="edit-tag-form" class="hidden max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800 mt-20">
+    <section id="edit-tag-form" class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800 mt-8 md:mt-16">
         <h2 class="text-lg font-semibold text-gray-700 capitalize dark:text-white">Update tag <span id="category-id">#</span></h2>
 
         <form>
