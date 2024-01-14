@@ -35,34 +35,18 @@ create table wiki
     created_date bigint               null,
     updated_date bigint               null,
     constraint wiki_ibfk_1
-        foreign key (creator) references users (user_id)
-            on update cascade on delete cascade,
+        foreign key (creator) references users (user_id),
     constraint wiki_ibfk_2
         foreign key (category_id) references category (category_id)
-            on update cascade on delete cascade
 );
-
-create index category_id
-    on wiki (category_id);
-
-create index creator
-    on wiki (creator);
 
 create table wiki_tag
 (
     wiki_id int null,
     tag_id  int null,
     constraint wiki_tag_ibfk_1
-        foreign key (wiki_id) references wiki (wiki_id)
-            on update cascade on delete cascade,
+        foreign key (wiki_id) references wiki (wiki_id),
     constraint wiki_tag_ibfk_2
         foreign key (tag_id) references tag (tag_id)
-            on update cascade on delete cascade
 );
-
-create index tag_id
-    on wiki_tag (tag_id);
-
-create index wiki_id
-    on wiki_tag (wiki_id);
 
