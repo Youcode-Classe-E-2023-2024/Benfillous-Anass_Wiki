@@ -79,7 +79,7 @@ function getWikis() {
             let archiveBtn = "";
             wikis.forEach((wiki) => {
                 if (admin) {
-                    archiveBtn = `<button class="action-button archive-btn" data-wiki-id="${wiki.wiki_infos.wiki_id}">Archive</button>`
+                    archiveBtn = `<button class="action-button archive-btn dark:hover:text-yellow-500 text-yellow-700" data-wiki-id="${wiki.wiki_infos.wiki_id}">Archive</button>`
                 }
 
                 let tags = wiki.tags;
@@ -94,23 +94,23 @@ function getWikis() {
 
                 let content = wiki.wiki_infos.content.length > 20 ? wiki.wiki_infos.content.substring(0, 20) + "..." : wiki.wiki_infos.content;
                 wikisList.innerHTML += `
-                    <tr class="table-row">
-                        <td class="cell-id">${wiki.wiki_infos.wiki_id}</td>
-                        <td class="cell-title">${wiki.wiki_infos.title}</td>
-                        <td class="cell-content">${content}</td>
-                        <td class="cell-username">${wiki.wiki_infos.username}</td>
-                        <td class="cell-tag flex">${tagHtml}</td>
-                        <td class="cell-category">${wiki.wiki_infos.category}</td>
-                        <td class="cell-created-date">${formatTimestamp(wiki.wiki_infos.created_date)}</td>
-                        <td class="cell-actions flex px-20 align-center">
-                            <button class="action-button"><a href="index.php?page=wiki&id=${wiki.wiki_infos.wiki_id}">See More</a></button>
-                            <button class="action-button edit-btn" data-wiki-id="${wiki.wiki_infos.wiki_id}" data-wiki-title="${wiki.wiki_infos.title}"
-                                data-wiki-content="${wiki.wiki_infos.content}" data-wiki-tag="${tags}" data-wiki-category="${wiki.wiki_infos.category_id}">Edit
-                            </button>
-                            <button class="action-button delete-btn" data-wiki-id="${wiki.wiki_infos.wiki_id}">Delete</button>
-                            ${archiveBtn}
-                        </td>
-                    </tr>`;
+                    <div>
+    <div class="bg-gray-100 p-6 rounded-lg">
+        <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://source.unsplash.com/random/?news&${wiki.wiki_infos.wiki_id}" alt="content">
+        <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3>
+        <h2 class="text-lg text-gray-900 font-medium title-font mb-4">${wiki.wiki_infos.title}</h2>
+        <p class="leading-relaxed text-balance">${content}</p>
+        <div class="flex justify-between items-center mt-6">
+            <button class="action-button dark:hover:text-blue-500 text-blue-700"><a href="index.php?page=wiki&id=${wiki.wiki_infos.wiki_id}">See More</a></button>
+            <button class="action-button edit-btn dark:hover:text-green-500 text-green-700" data-wiki-id="${wiki.wiki_infos.wiki_id}" data-wiki-title="${wiki.wiki_infos.title}"
+                data-wiki-content="${content}" data-wiki-tag="${tags}" data-wiki-category="${wiki.wiki_infos.category_id}">Edit
+            </button>
+            <button class="action-button delete-btn dark:hover:text-red-500 text-red-700" data-wiki-id="${wiki.wiki_infos.wiki_id}">Delete</button>
+            ${archiveBtn}
+        </div>
+    </div>
+</div>
+`;
             })
 
             if (wikis.length === 0) {
