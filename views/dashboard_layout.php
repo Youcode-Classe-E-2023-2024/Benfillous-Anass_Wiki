@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
           rel="stylesheet"/>
 </head>
@@ -23,3 +24,32 @@
 <script src="<?= PATH ?>assets/js/main.js"></script>
 </body>
 </html>
+
+<script>
+    var xValues = ["Wikis", "Categories", "Tags", "Users"];
+    var yValues = [<?= $wikisNumber ?>, <?= $categoriesNumber ?>, <?= $tagsNumber ?>, <?= $usersNumber ?>];
+    var barColors = [
+        "#b91d47",
+        "#00aba9",
+        "#2b5797",
+        "#e8c3b9",
+        "#1e7145"
+    ];
+
+    new Chart("myChart", {
+        type: "pie",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: "Wiki Statistics"
+            }
+        }
+    });
+</script>
