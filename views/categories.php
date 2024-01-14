@@ -6,9 +6,9 @@
         <div class="overflow-x-auto shadow-md sm:rounded-lg">
             <div class="inline-block min-w-full align-middle">
                 <div class="overflow-hidden">
-                    <div class="flex justify-between m-4">
+                    <div class="flex justify-between md:mx-4">
                         <h3>Categories</h3>
-                        <a href="#category-form" onclick="showForm()" class="w-40 dark:hover:bg-gray-600">Add new Category</a>
+                        <a href="#category-form" onclick="showForm()" class="w-32 md:w-40 dark:hover:bg-gray-600">Add new Category</a>
                     </div>
                     <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
                         <thead class="bg-gray-100 dark:bg-gray-700">
@@ -35,7 +35,7 @@
         </div>
     </div>
 
-    <section id="category-form" class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800 mt-20">
+    <section id="category-form" class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800 mt-8 md:mt-16">
         <h2 class="text-lg font-semibold text-gray-700 capitalize dark:text-white">Add New Category</h2>
 
         <form>
@@ -50,7 +50,7 @@
         </form>
     </section>
 
-    <section id="edit-category-form" class="hidden max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800 mt-20">
+    <section id="edit-category-form" class="hidden max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800 mt-8 md:mt-16">
         <h2 class="text-lg font-semibold text-gray-700 capitalize dark:text-white">Update Category <span id="category-id">#</span></h2>
 
         <form>
