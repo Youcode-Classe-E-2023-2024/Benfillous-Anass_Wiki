@@ -1,6 +1,6 @@
 <!-- component -->
-<div x-data="setup()" :class="{ 'dark': isDark }">
-    <div class="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white dark:bg-gray-700 text-black dark:text-white">
+<div>
+    <div class="min-h-screen flex flex-col antialiased bg-white dark:bg-gray-700 text-black dark:text-white">
 
         <!-- Header -->
         <div class="fixed w-full flex items-center justify-between h-14 text-white z-10">
@@ -60,7 +60,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="index.php?page=home&wikis=true"
+                        <a href="index.php?page=wikis"
                            class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
                 <span class="inline-flex justify-center items-center ml-4">
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -119,6 +119,7 @@
 
         <div class="h-full ml-14 mt-14 mb-10 md:ml-64">
 
+
             <!-- Statistics Cards -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 p-4 gap-4">
                 <div class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group">
@@ -166,10 +167,10 @@
                              xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                              viewBox="0 0 490 490" xml:space="preserve">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                                    <g id="SVGRepo_iconCarrier">
-                                                        <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04 v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324 h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"></path>
-                                                    </g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04 v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324 h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"></path>
+                            </g>
                         </svg>
 
                     </div>
@@ -180,7 +181,9 @@
                 </div>
             </div>
             <!-- ./Statistics Cards -->
-
+            <div class="flex justify-center">
+                <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+            </div>
             <!-- Client Table -->
             <div class="mt-4 mx-4">
                 <div class="w-full overflow-hidden rounded-lg shadow-xs">
@@ -230,15 +233,16 @@
             <!-- ./Client Table -->
         </div>
 
-        <div class="flex justify-between px-60 py-10">
-            <!--          categories-->
+        <div class="grid grid-cols-1 px-12 sm:px-10 md:px-16 lg:pl-20 py-6 md:py-10 lg:py-14">
+            <!-- categories -->
             <?php include "views/categories.php"; ?>
             <!--tags-->
             <?php include "views/tags.php"; ?>
 
         </div>
         <!-- start  -->
-        <div id="archived-wikis" class="flex flex-col justify-center px-32 py-10 dark:bg-gray-800">
+        <div id="archived-wikis" class="flex flex-col justify-center px-6 md:px-32 py-6 md:py-10 lg:py-14 dark:bg-gray-800">
+
         </div>
         <!-- end -->
     </div>
