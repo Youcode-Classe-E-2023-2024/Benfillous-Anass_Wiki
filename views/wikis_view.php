@@ -1,28 +1,15 @@
-<div class="bg-gray-50 min-h-screen flex justify-center px-16">
+<div class="bg-gray-50 min-h-screen flex justify-center w-full">
     <div class="relative w-full max-w-4xl">
         <div class="absolute top-0 -left-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob "></div>
         <div class="absolute top-0 -right-4 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
         <div class="absolute -bottom-32 left-20 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
         <div id="wikis-container" class="m-8 relative space-y-4">
             <div class="flex justify-end">
-                <button id="add-wiki-btn" class="w-1/4 bg-gray-300 rounded-sm hover:bg-gray-200">Add New Wiki</button>
+                <button id="add-wiki-btn" class="w-1/4 bg-yellow-300 rounded-sm hover:bg-yellow-400">Add New Wiki</button>
             </div>
-            <table class="w-full bg-white rounded-lg">
-                <thead>
-                <tr class="p-5 bg-gray-300">
-                    <th class="h-6 w-10 text-center rounded">Id</th>
-                    <th class="h-6 w-32 text-center rounded">Title</th>
-                    <th class="w-32 h-6 text-center rounded-lg">Description</th>
-                    <th class="w-24 h-6 text-center rounded-lg">Creator</th>
-                    <th class="w-24 h-6 text-center rounded-lg">Tags</th>
-                    <th class="w-24 h-6 text-center rounded-lg">Category</th>
-                    <th class="w-24 h-6 text-center rounded-lg">Created</th>
-                    <th class="w-24 h-6 text-center rounded-lg">Action</th>
-                </tr>
-                </thead>
-                <tbody id="wikis-list">
-                </tbody>
-            </table>
+            <section id="wikis-list" class="text-gray-600 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full gap-4  body-font">
+
+            </section>
         </div>
 
         <div id="empty-list-container" class="text-center"></div>
