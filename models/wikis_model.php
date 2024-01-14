@@ -7,3 +7,5 @@ $tagObj = new Tag();
 $tags = $tagObj->getTags();
 
 $wikiObj = new Wiki();
+
+?>
