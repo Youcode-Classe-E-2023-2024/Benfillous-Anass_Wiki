@@ -4,7 +4,7 @@
 
         <!-- featured section -->
 
-        <div id="hero-container" class="flex flex-wrap md:flex-no-wrap space-x-0 md:space-x-6 mb-16">
+        <div id="hero-container" class="flex flex-wrap md:flex-no-wrap space-x-0  mb-16">
 
 
         </div>
